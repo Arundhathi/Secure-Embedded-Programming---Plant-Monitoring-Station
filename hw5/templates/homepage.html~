@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<title> TLEN 5830 Secure Embedded Programming</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+
+	<style>
+	body {
+		padding-top: 100px;
+		font-family: "Jazz LET",Impact,cursive,fantasy;
+		color: #ffffff;
+		background: url(/static/images/final.jpg)
+	}
+	</style>
+	</head>
+	<body>
+		<div class="container">
+		<h1>TLEN 5830: Secure Embeddded Programming</h1>
+		<p> Webpage created for Assignment 5. Page can navigate to three different functinalities. LED control, Button Monitoring and Temperature Monitoring. </p> 
+		{% if bodyText%}
+			{{bodyText}}
+		{% endif %}
+		<br>
+		<p> Click <a href="/LedDisco/0">here</a> to control off-board LEDs</p>
+		<p> Click <a href="/ButtonClick">here</a> to monitor off-board button control</p>
+		<p> Click <a href="/Temperature">here</a> to monitor Temperature values using TMP36</p> 
+	</body>
+</html>
+

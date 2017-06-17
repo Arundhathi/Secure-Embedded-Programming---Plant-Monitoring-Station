@@ -1,0 +1,10 @@
+<html>
+ <head>
+	 <title> INTRO TO FLASK </title>
+ </head>
+ <body>
+	 {% if bodyText%}
+	 	{{ bodyText }}
+	 {% endif %}
+ </body>
+</html> 

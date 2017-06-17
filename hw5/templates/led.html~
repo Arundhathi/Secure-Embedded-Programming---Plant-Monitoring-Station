@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<title>LED Disco</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+
+	<script>
+	<!--
+	function
+	timedRefresh(timeoutPeriod) {
+	setTimeout("location.reload(true);",timeoutPeriod);
+	}	
+window.onload=timedRefresh(10000);
+
+	</script>
+	<style>
+	body {
+		padding-top: 100px;
+		font-family: "cursive",Calfish Script Pro,Comic Sans,cursive;
+		color:#ffffff;
+		background: url(/static/images/main1.jpg);
+
+	}
+	</style>
+	</head>
+	<body>
+		<div class="container">
+		<h1>TLEN 5830: Secure Embeddded Programming</h1>
+		<h2>Assignment 5==>PART 1: LED Control</h2>
+		<p> This section is used to either switch on or switch off the LED </p> 
+		{% if bodyText%}
+			{{bodyText}}
+		{% endif %}
+		<br>
+		<p> Click <a href="/LedDisco/0">here</a> to switch off off-board LEDs</p>
+		<p> Click <a href="/LedDisco/1">here</a> to switch on off-board button control</p>
+		<p> Click <a href="/">here</a> to return to the homepage</p> 
+	</body>
+</html>
+
