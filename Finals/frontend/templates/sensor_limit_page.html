@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="/static/style.css" type="text/css">
+{% block body %}
+ 
+<style>
+body{
+	padding-top:50px;
+	font-family:"cursive", Calfish, cursive;
+	background:url(/static/images/pottedplant5.jpg);
+	background-size: contain;
+	background-color:#3498DB;
+	background-repeat:no-repeat;
+	background-position:left-bottom; 
+	}
+</style>
+<form action="/sensor_limit_page" method="POST">
+	<div class="login">
+		<div class="login-screen">
+			
+			<div class="app-title">
+				<h1>WELCOME USER</h1>
+				<h2>SET SENSOR LIMITS</h2>
+			</div>
+ 
+				<div class="login-form">
+			
+				<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="username" name="username">
+				<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+				
+				<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="sensor_name" name="sensor_name">
+				<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+ 
+				<div class="control-group">
+				<input type="password" class="login-field" value="" placeholder="sensor_key" name="sensor_key">
+				<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div>
+				
+				<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="upper_limit" name="upper_limit">
+				<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+ 
+				<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="lower_limit" name="lower_limit">
+				<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div>
+                
+				<input type="submit" value="submit" class="btn btn-primary btn-large btn-block" >
+			    <br>
+				
+			</div>
+		</div>
+	</div>
+	
+</form>
+
+  {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+  {% endif %}
+
+
+
+{% endblock %}

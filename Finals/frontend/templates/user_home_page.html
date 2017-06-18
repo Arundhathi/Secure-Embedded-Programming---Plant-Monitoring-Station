@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="/static/style.css" type="text/css">
+{% block body %}
+
+{% if session['logged_in'] %}
+<style>
+body{
+	padding-top:50px;
+	font-family:"cursive", Calfish, cursive;
+	color:#003300;
+	background:url(/static/images/plantgeneral.gif);
+	background-position:left center; 
+	background-size: cover; 
+	background-repeat: no-repeat; 
+}
+</style>
+<form action="/user_home_page" method="POST">
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>WELCOME USER</h1>
+			</div>
+		<div class="login-form">
+				<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="username" name="username">
+				<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+ 			<p> Click <a href ="/sensor_limit_page" >here</a> to set sensor limits</p>
+        		<p> Click <a href ="/sensor_register_page" >here</a> to register a new sensor</p>
+			<p> Click <a href ="/getgraph_option_page" >here</a> to view data as a graph </p>
+
+			<input type="submit" name ="VIEW SENSOR DATA" value="VIEW SENSOR DATA" class="btn btn-primary btn-large btn-block" >
+		
+			    <br>
+			</div>
+		</div>
+	</div>
+</form>
+
+ {% if bodyText%}
+
+ 	{{bodyText}}
+
+ {% endif %}
+	
+  {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+  {% endif %}
+
+
+
+{% endif %}
+
+{% endblock %}
