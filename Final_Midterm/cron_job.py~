@@ -1,0 +1,113 @@
+#!/usr/bin/env python
+
+import mraa
+import argparse
+import sqlite3
+import requests
+import smtplib
+from email.mime.text import MIMEText
+
+import time 
+from time import strftime 
+
+import datetime
+from datetime import datetime 
+
+from flask import Flask,render_template,Markup,request
+from flask_bootstrap import  Bootstrap
+
+
+
+
+#Declaring GPIO pins for LED and BUTTONS
+led_red = mraa.Gpio(7)
+led_red.dir(mraa.DIR_OUT)
+led_red.write(0)
+
+led_green = mraa.Gpio(4)
+led_green.dir(mraa.DIR_OUT)
+led_green.write(0)
+
+temp_rawread = mraa.Aio(1)
+temp_rawread.setBit(12)
+
+#Creating a file for logging
+
+with open('midterm.txt','w') as file:
+    
+	file.write('')
+
+conn = sqlite3.connect('/home/root/Final_Midterm/user_log.db')
+c = conn.cursor()
+	
+sender = 'arundhathirs1993@gmail.com'
+pwd = 'Durganihantree23671518'
+username = "arswami"
+sub = 'Temperature Sensor Alert' 
+body = 'Temperature Exceeded Preset Range.'
+
+lower_limit = "SELECT lower_limit FROM user_read"  
+upper_limit = "SELECT upper_limit FROM user_read" 
+email = "SELECT email_id FROM user_read"
+smtp_ser = "SELECT smtp_server FROM user_read"
+
+c.execute(lower_limit)
+lower = c.fetchall()
+lower_value=lower[0][0]
+
+	
+c.execute(upper_limit)
+upper = c.fetchall()
+upper_value = upper[0][0]
+	
+
+c.execute(email)
+email_addr = c.fetchall()
+receiver  = str(email_addr[0][0])
+
+c.execute(smtp_ser)
+smtp_server_use = c.fetchall()
+smtp_server = str(smtp_server_use[0][0])
+print (smtp_server)
+read_temp_value = temp_rawread.read()
+v = float(read_temp_value/819.0)
+C_deg = (v * 100) - 50
+F_deg = (C_deg * 9.0 / 5.0) + 32.0
+
+led_red.write(0)
+led_green.write(0)
+	
+
+query = "UPDATE user_read SET password = ?, C_deg = ?"
+t = (pwd,C_deg)
+c.execute(query,t)
+conn.commit()
+
+
+if(C_deg <lower_value or C_deg > upper_value):
+    
+    led_red.write(1)
+    led_green.write(0)
+    
+    server = smtplib.SMTP(smtp_server)
+    server.ehlo()
+    server.starttls()        
+    server.ehlo()
+    server.login(sender,pwd)
+    msg = """From: %s \nTo: %s \nSubject: %s\n\n%s """ % (sender, ",".join(receiver), sub, body)
+    server.sendmail(sender,receiver,msg)
+    server.quit()
+    with open('midterm.txt','a') as file:
+        file.write('\nTEMP NOT IN RANGE and VALUE IS:'+str(C_deg))
+ 
+else:
+    led_green.write(1)
+    led_red.write(0)
+    with open('midterm.txt','a') as file:
+        file.write('\nTEMP IN RANGE and VALUE IS:'+str(C_deg))
+	
+
+time.sleep(5)
+led_red.write(0)
+led_green.write(0)
+

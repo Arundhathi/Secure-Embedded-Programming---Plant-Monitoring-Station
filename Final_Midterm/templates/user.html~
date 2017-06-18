@@ -1,0 +1,19 @@
+<html>
+ <head>
+	 <title> WELCOME USER </title>
+	 <meta name = "viewport" content = "width=device-width , initial-scale=1.0 ">
+	 <link rel="stylesheet" href="/static/style1.css" type="text/css">
+
+ </head>
+ <body>
+	<form action = "http://10.0.0.119:8000/read_temp" method = "POST">
+	
+		<p> Upper Temperature Limit <input type = "text" name = "Upper_Temperature_Limit" /></p>
+		<p> Lower Temperature Limit <input type = "text" name = "Lower_Temperature_Limit" /></p>
+		<p> SMTP_Server&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<input type = "text" name = "SMTP_Server" /></p>
+		<p> Email_ID&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type = "text" name = "Email_ID" /></p>
+		<p> Disable Alerts&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type = "text" name = "Alerts" /></p>
+		<p><input type = "submit" value = "submit" /></p>
+	</form>
+ </body>
+</html>
