@@ -1,0 +1,2 @@
+arundhathi@arundhathi-VirtualBox:~ snmpwalk -v3 -l authPriv -a MD5 -A "12345678" -x DES -X "12345678" -u arundhathi 192.168.1.144 nsExtendOutput1
+NET-SNMP-EXTEND-MIB::nsExtendOutput1Line."Temperature" = STRING: 27.29
